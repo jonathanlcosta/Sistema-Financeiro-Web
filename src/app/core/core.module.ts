@@ -19,7 +19,8 @@ import { HomeComponent } from './paginas/home/home.component';
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
-    SharedModule
+    SharedModule,
+
     
   ]
 })
