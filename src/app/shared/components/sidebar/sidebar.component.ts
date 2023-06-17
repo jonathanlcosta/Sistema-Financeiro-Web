@@ -17,15 +17,15 @@ selectMenu(menu: number) {
       break;
 
     case 2:
-      this.router.navigate(['/sistema']);
+      this.router.navigate(['/sistemas']);
       break;
 
     case 3:
-      this.router.navigate(['/categoria']);
+      this.router.navigate(['/categorias']);
       break;
 
     case 4:
-      this.router.navigate(['/despesa']);
+      this.router.navigate(['/despesas']);
       break;
 
     default:
