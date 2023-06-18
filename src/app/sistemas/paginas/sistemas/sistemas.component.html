@@ -1,2 +1,29 @@
 <app-navbar></app-navbar>
 <app-sidebar></app-sidebar>
+<div class="container-base">
+    <div class="content-page">
+      <div class="card-header">
+        <div class="card-title">
+          Cadastro de Sistemas
+        </div>
+      </div>
+      <div class="form-page">
+        <form [formGroup]="sistemaForm" (submit)="enviar()">
+          <div class="row">
+            <div class="group-row">
+              <label for="name">Sistema</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Nome" formControlName="Nome" required />
+              <label class="error-input" *ngIf="sistemaForm.get('Nome')?.errors?.required && sistemaForm.get('Nome')?.touched">
+                Campo Obrigatório!
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="group-row">
+              <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
