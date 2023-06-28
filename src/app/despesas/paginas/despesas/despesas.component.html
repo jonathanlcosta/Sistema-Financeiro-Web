@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <app-sidebar></app-sidebar>
 
-<!-- <div class="container-base">
+<div class="container-base">
 
     <div class="content-page">
         <div class="card-header">
@@ -10,12 +10,12 @@
             </div>
         </div>
 
-        <form class="form-page" [formGroup]="despesaForm" (submit)="enviar()">
+        <form class="form-page" [formGroup]="despesaForm" (submit)="inserir()">
 
             <div class="row">
                 <div class="group-row">
                     <label>Nome</label>
-                    <input type="text" name="name" id="name" placeholder="Nome" formControlName="name" required />
+                    <input type="text" name="name" id="name" placeholder="Nome" formControlName="Nome" required />
                     <label class="error-input" *ngIf="despesaForm.get('name')?.errors?.['required'] &&
                     despesaForm.get('name')?.touched">
                         Campo Obrigatório!
@@ -26,7 +26,7 @@
             <div class="row">
                 <div class="group-row">
                     <label>Valor</label>
-                    <input type="number" name="valor" id="valor" placeholder="Valor" formControlName="valor" required />
+                    <input type="number" name="valor" id="valor" placeholder="Valor" formControlName="Valor" required />
                     <label class="error-input" *ngIf="despesaForm.get('valor')?.errors?.['required'] &&
                     despesaForm.get('valor')?.touched">
                         Campo Obrigatório!
@@ -47,20 +47,32 @@
 
 
             <div class="row">
-                <div class="group-row">
-                    <label>Sistemas</label>
-                    <ng-select class="select-padrao" formControlName="sistemaSelect" [(ngModel)]="sistemaSelect"
-                        [items]="listSistemas" bindLabel="name" [multiple]="false" [clearable]="false"
-                        [searchable]="false"></ng-select>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Categoria:</label>
+                        <select class="form-control"  [(ngModel)]="categoriaSelecionadoId" 
+                        formControlName="IdCategoria">
+                            <option value="">Selecione...</option>
+                            <option *ngFor="let categoria of categorias.Registros" [ngValue]="categoria.Id">
+                                {{categoria.Nome}}
+                            </option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
             <div class="row">
-                <div class="group-row">
-                    <label>Categoria</label>
-                    <ng-select class="select-padrao" formControlName="categoriaSelect" [(ngModel)]="categoriaSelect"
-                        [items]="listCategorias" bindLabel="name" [multiple]="false" [clearable]="false"
-                        [searchable]="false"></ng-select>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Usuario:</label>
+                        <select class="form-control"  [(ngModel)]="usuarioSelecionadoId" 
+                        formControlName="IdUsuario">
+                            <option value="">Selecione...</option>
+                            <option *ngFor="let usuario of usuarios.Registros" [ngValue]="usuario.Id">
+                                {{usuario.Email}}
+                            </option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
@@ -75,4 +87,4 @@
 
     </div>
 
-</div> -->
+</div>

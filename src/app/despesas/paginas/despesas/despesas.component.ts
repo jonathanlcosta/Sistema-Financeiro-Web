@@ -12,6 +12,7 @@ import { PaginacaoResponse } from 'src/app/shared/models/paginacao.response';
 import { UsuarioResponse } from 'src/app/usuarios/models/usuario.response';
 import { CategoriaListagemRequest } from 'src/app/categorias/models/categoria.listagem.request';
 import { CategoriaResponse } from 'src/app/categorias/models/categoria.response';
+import { DespesaResponse } from '../../models/despesa.response';
 
 @Component({
   selector: 'app-despesas',
@@ -39,6 +40,8 @@ constructor(public menuService: MenuService, public formBuilder: FormBuilder,
 
 ngOnInit(): void {
     this.menuService.menuSelecionado = 4;
+    this.recuperarCategorias();
+    this.recuperarUsuarios();
 
     this.despesaForm = this.formBuilder.group
     (
@@ -54,4 +57,29 @@ ngOnInit(): void {
   }
 
 
+  recuperarCategorias()
+  {
+    this.categoriaService.recuperar(this.categoria).subscribe((categoria) =>
+    this.categorias = categoria)
+  };
+
+recuperarUsuarios()
+{
+  this.usuarioService.recuperar(this.usuario).subscribe((usuario) =>
+  this.usuarios = usuario)
+}
+
+inserir(): void {
+  this.request = new DespesaRequest(this.despesaForm.value);
+  this.service.inserir(this.request).subscribe(
+    (response: DespesaResponse) => {
+      this.request = response;
+      this.request.IdUsuario = this.usuarioSelecionadoId;
+      this.request.IdCategoria = this.categoriaSelecionadoId;
+      this.router.navigate(['/Home']);
+    }
+  );
+
+
+}
 }
